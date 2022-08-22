@@ -2,9 +2,9 @@ import { StatusBar, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import UpperNavigator from "../../navigation/UpperNavigator";
-import AboutScreen from "./About";
-import HomeScreen from "./Home";
-import WatchLiveScreen from "./WatchLive";
+import AboutScreen from "./Routes/About";
+import HomeScreen from "./Routes/Home";
+import WatchLiveScreen from "./Routes/WatchLive";
 import { EnumHomeTypes as EnumTypes } from "../../types";
 
 const HomeRoute = () => {

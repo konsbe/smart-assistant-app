@@ -1,13 +1,13 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import { EnumHomeTypes, EnumProfileTypes, RootTabParamList } from "../../types";
+import { RootTabParamList } from "../../types";
 
 const Tab = createMaterialTopTabNavigator<RootTabParamList>();
 
 interface IProps {
   components: Array<React.ComponentType<any>>;
-  name: Array<EnumHomeTypes.Home | EnumProfileTypes.Profile>;
+  name: Array<keyof RootTabParamList>;
 }
 const MyTabs = (props: IProps) => {
   return (
@@ -20,7 +20,7 @@ const MyTabs = (props: IProps) => {
       {props.components.map((cmp, index) => {
         return (
           <Tab.Screen
-            name={props.name[index]}
+            name={cmp.name as keyof RootTabParamList}
             component={cmp}
             options={{ tabBarLabel: props.name[index] }}
             key={index}
