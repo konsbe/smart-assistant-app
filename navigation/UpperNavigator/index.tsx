@@ -1,21 +1,14 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+import { EnumHomeTypes, EnumProfileTypes, RootTabParamList } from "../../types";
 
-const Tab = createMaterialTopTabNavigator();
+const Tab = createMaterialTopTabNavigator<RootTabParamList>();
 
 interface IProps {
-  components: Array<
-    | React.FC<{}>
-    | JSX.Element
-    | React.ComponentType<any>
-    | undefined
-    | Element
-    | any
-  >;
-  name: Array<string>;
+  components: Array<React.ComponentType<any>>;
+  name: Array<EnumHomeTypes.Home | EnumProfileTypes.Profile>;
 }
-
 const MyTabs = (props: IProps) => {
   return (
     <Tab.Navigator
@@ -39,11 +32,7 @@ const MyTabs = (props: IProps) => {
 };
 
 const BottomNavigator = (props: IProps) => {
-  return (
-    <>
-      <MyTabs components={props.components} name={props.name} />
-    </>
-  );
+  return <MyTabs components={props.components} name={props.name} />;
 };
 
 export default BottomNavigator;

@@ -4,11 +4,10 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import BottomNavigator from "./components/BottomNavigator/BottomNavigator";
 
 import useCachedResources from "./hooks/useCachedResources";
 import useColorScheme from "./hooks/useColorScheme";
-import Navigation, { NavigationBar } from "./navigation";
+import BottomNavigation from "./navigation/BottomNavigator";
 
 // export default function App() {
 //   return (
@@ -38,9 +37,13 @@ export default function App() {
   } else {
     return (
       <SafeAreaProvider>
-        <Navigation colorScheme={colorScheme} />
+        <BottomNavigation colorScheme={colorScheme} />
         <StatusBar />
       </SafeAreaProvider>
     );
   }
 }
+
+// export const SignInRoute = () => {
+
+// }

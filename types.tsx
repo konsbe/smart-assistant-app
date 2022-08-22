@@ -27,10 +27,11 @@ export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
   NativeStackScreenProps<RootStackParamList, Screen>;
 
 export type RootTabParamList = {
-  TabOne: undefined;
-  TabTwo: undefined;
-  TabThree: undefined;
-  TabFour: undefined;
+  Home: undefined;
+  About: undefined;
+  Profile: undefined;
+  Details: undefined;
+  Settings: undefined;
 };
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
@@ -38,3 +39,13 @@ export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
     BottomTabScreenProps<RootTabParamList, Screen>,
     NativeStackScreenProps<RootStackParamList>
   >;
+export enum EnumProfileTypes {
+  Profile = "Profile",
+  Settings = "Setings",
+  Details = "Details",
+}
+export enum EnumHomeTypes {
+  Home = "Home",
+  About = "About",
+  WatchLive = "WatchLive",
+}
