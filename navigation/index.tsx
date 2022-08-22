@@ -1,5 +1,5 @@
 import { FontAwesome } from "@expo/vector-icons";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import {
   NavigationContainer,
   DefaultTheme,
@@ -7,7 +7,7 @@ import {
 } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
-import { ColorSchemeName, Pressable } from "react-native";
+import { ColorSchemeName, Pressable, View } from "react-native";
 
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
@@ -21,7 +21,8 @@ import {
   RootTabScreenProps,
 } from "../types";
 import LinkingConfiguration from "./LinkingConfiguration";
-
+import { Text } from "react-native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 export default function Navigation({
   colorScheme,
 }: {
@@ -42,10 +43,18 @@ export default function Navigation({
  * https://reactnavigation.org/docs/modal
  */
 const Stack = createNativeStackNavigator<RootStackParamList>();
+const AuthStack = createNativeStackNavigator<any>();
+const Tab = createMaterialTopTabNavigator<any>();
 
 function RootNavigator() {
   return (
     <Stack.Navigator>
+      <Stack.Screen
+        name="Screen"
+        component={UpperTabNavigator}
+        options={{ headerShown: false }}
+        // style={{ margin: "1rem" }}
+      />
       <Stack.Screen
         name="Root"
         component={BottomTabNavigator}
@@ -110,7 +119,30 @@ function BottomTabNavigator() {
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
+      <BottomTab.Screen
+        name="TabThree"
+        component={TabTwoScreen}
+        options={{
+          title: "Stats",
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+        }}
+      />
     </BottomTab.Navigator>
+  );
+}
+function UpperTabNavigator() {
+  const colorScheme = useColorScheme();
+
+  return (
+    <Tab.Navigator
+      initialRouteName="TabOne"
+      screenOptions={{
+        tabBarActiveTintColor: Colors[colorScheme].tint,
+      }}
+    >
+      <Tab.Screen name="Home" component={TabTwoScreen} />
+      <Tab.Screen name="Settings" component={TabTwoScreen} />
+    </Tab.Navigator>
   );
 }
 

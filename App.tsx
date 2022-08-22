@@ -1,10 +1,12 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import useCachedResources from "./hooks/useCachedResources";
 import useColorScheme from "./hooks/useColorScheme";
-import Navigation from "./navigation";
+import Navigation, { NavigationBar } from "./navigation";
 
 // export default function App() {
 //   return (
@@ -23,6 +25,7 @@ import Navigation from "./navigation";
 //     justifyContent: 'center',
 //   },
 // });
+const NavBar = createNativeStackNavigator<any>();
 
 export default function App() {
   const isLoadingComplete = useCachedResources();

@@ -20,6 +20,7 @@ export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
   Modal: undefined;
   NotFound: undefined;
+  Screen: NavigatorScreenParams<RootTabParamList> | undefined | any;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
@@ -28,6 +29,8 @@ export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
 export type RootTabParamList = {
   TabOne: undefined;
   TabTwo: undefined;
+  TabThree: undefined;
+  TabFour: undefined;
 };
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
