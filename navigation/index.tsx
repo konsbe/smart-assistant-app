@@ -13,19 +13,15 @@ import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
 import ModalScreen from "../screens/ModalScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
-import TabOneScreen from "../screens/TabOneScreen";
-import TabTwoScreen from "../screens/TabTwoScreen";
 import {
   RootStackParamList,
   RootTabParamList,
   RootTabScreenProps,
 } from "../types";
 import LinkingConfiguration from "./LinkingConfiguration";
-import { Text } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import HomeScreen from "../screens/Home/Home";
-import ProfileScreen from "../screens/Profile/Profile";
 import HomeRoute from "../screens/Home";
+import ProfileRoute from "../screens/Profile";
 
 export default function Navigation({
   colorScheme,
@@ -111,7 +107,7 @@ function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="TabTwo"
-        component={ProfileScreen}
+        component={ProfileRoute}
         options={{
           title: "Stats",
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,

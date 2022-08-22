@@ -1,62 +1,47 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Home from "../../screens/Home/Home";
-import Profile from "../../screens/Profile/Profile";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import AboutScreen from "../../screens/Home/About";
-import SettingsScreen from "../../screens/Profile/Settings";
-import HomeScreen from "../../screens/Home/Home";
 
 const Tab = createMaterialTopTabNavigator();
-const Stack = createNativeStackNavigator();
 
-function MyStack() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="Profile" component={Profile} />
-    </Stack.Navigator>
-  );
+interface IProps {
+  components: Array<
+    | React.FC<{}>
+    | JSX.Element
+    | React.ComponentType<any>
+    | undefined
+    | Element
+    | any
+  >;
+  name: Array<string>;
 }
 
-const MyTabs = () => {
+const MyTabs = (props: IProps) => {
   return (
     <Tab.Navigator
-      initialRouteName="Home"
+      initialRouteName={props.name[0]}
       screenOptions={{
         tabBarActiveTintColor: "#000000",
-        // style: { backgroundColor: "#000000" },
       }}
-      // tabBarOptions={{
-      //   style: { backgroundColor: "black" },
-      // }}
     >
-      <Tab.Screen
-        name="Home"
-        component={HomeScreen}
-        options={{ tabBarLabel: "About" }}
-      />
-      <Tab.Screen
-        name="About"
-        component={AboutScreen}
-        options={{ tabBarLabel: "About" }}
-      />
-      <Tab.Screen
-        name="Settings"
-        component={SettingsScreen}
-        options={{ tabBarLabel: "Settings" }}
-      />
+      {props.components.map((cmp, index) => {
+        return (
+          <Tab.Screen
+            name={props.name[index]}
+            component={cmp}
+            options={{ tabBarLabel: props.name[index] }}
+            key={index}
+          />
+        );
+      })}
     </Tab.Navigator>
   );
 };
 
-const BottomNavigator = () => {
+const BottomNavigator = (props: IProps) => {
   return (
     <>
-      <MyTabs />
+      <MyTabs components={props.components} name={props.name} />
     </>
   );
 };
