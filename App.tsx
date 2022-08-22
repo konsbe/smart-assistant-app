@@ -8,7 +8,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import useCachedResources from "./hooks/useCachedResources";
 import useColorScheme from "./hooks/useColorScheme";
 import BottomNavigation from "./navigation/BottomNavigator";
-import SignInScreen from "./screens/SignIn";
+import SignInScreen from "./views/SignIn";
 
 // export default function App() {
 //   return (

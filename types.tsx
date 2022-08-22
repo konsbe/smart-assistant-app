@@ -9,12 +9,12 @@ import {
   NavigatorScreenParams,
 } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import AboutScreen from "./screens/Home/Routes/About";
-import HomeScreen from "./screens/Home/Routes/Home";
-import WatchLiveScreen from "./screens/Home/Routes/WatchLive";
-import DetailsScreen from "./screens/Profile/Routes/Details";
-import ProfileScreen from "./screens/Profile/Routes/Profile";
-import SettingsScreen from "./screens/Profile/Routes/Settings";
+import AboutScreen from "./views/Home/Routes/About";
+import HomeScreen from "./views/Home/Routes/Home";
+import WatchLiveScreen from "./views/Home/Routes/WatchLive";
+import DetailsScreen from "./views/Profile/Routes/Details";
+import ProfileScreen from "./views/Profile/Routes/Profile";
+import SettingsScreen from "./views/Profile/Routes/Settings";
 
 declare global {
   namespace ReactNavigation {

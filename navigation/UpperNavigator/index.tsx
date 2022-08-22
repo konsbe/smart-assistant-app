@@ -6,23 +6,32 @@ import { RootTabParamList } from "../../types";
 const Tab = createMaterialTopTabNavigator<RootTabParamList>();
 
 interface IProps {
-  components: Array<React.ComponentType<any>>;
-  name: Array<keyof RootTabParamList>;
+  components: Array<{
+    component: React.ComponentType<any>;
+    name: keyof RootTabParamList;
+  }>;
 }
-const MyTabs = (props: IProps) => {
+const MyTabs = ({
+  components,
+}: {
+  components: Array<{
+    component: React.ComponentType<any>;
+    name: keyof RootTabParamList;
+  }>;
+}) => {
   return (
     <Tab.Navigator
-      initialRouteName={props.name[0]}
+      initialRouteName={components[0].name}
       screenOptions={{
         tabBarActiveTintColor: "#000000",
       }}
     >
-      {props.components.map((cmp, index) => {
+      {components.map(({ component, name }, index) => {
         return (
           <Tab.Screen
-            name={cmp.name as keyof RootTabParamList}
-            component={cmp}
-            options={{ tabBarLabel: props.name[index] }}
+            name={name as keyof RootTabParamList}
+            component={component}
+            options={{ tabBarLabel: name }}
             key={index}
           />
         );
@@ -32,7 +41,7 @@ const MyTabs = (props: IProps) => {
 };
 
 const BottomNavigator = (props: IProps) => {
-  return <MyTabs components={props.components} name={props.name} />;
+  return <MyTabs components={props.components} />;
 };
 
 export default BottomNavigator;

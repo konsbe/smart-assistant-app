@@ -5,15 +5,27 @@ import UpperNavigator from "../../navigation/UpperNavigator";
 import AboutScreen from "./Routes/About";
 import HomeScreen from "./Routes/Home";
 import WatchLiveScreen from "./Routes/WatchLive";
-import { EnumHomeTypes as EnumTypes } from "../../types";
+import { EnumHomeTypes } from "../../types";
+
+export const RoutesHome = [
+  {
+    component: HomeScreen,
+    name: EnumHomeTypes.Home,
+  },
+  {
+    component: AboutScreen,
+    name: EnumHomeTypes.About,
+  },
+  {
+    component: WatchLiveScreen,
+    name: EnumHomeTypes.WatchLive,
+  },
+];
 
 const HomeRoute = () => {
   return (
     <SafeAreaProvider>
-      <UpperNavigator
-        components={[HomeScreen, AboutScreen, WatchLiveScreen]}
-        name={[EnumTypes.Home, EnumTypes.About, EnumTypes.WatchLive]}
-      />
+      <UpperNavigator components={RoutesHome} />
       <StatusBar />
     </SafeAreaProvider>
   );
