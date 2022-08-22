@@ -50,12 +50,6 @@ function RootNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Screen"
-        component={UpperTabNavigator}
-        options={{ headerShown: false }}
-        // style={{ margin: "1rem" }}
-      />
-      <Stack.Screen
         name="Root"
         component={BottomTabNavigator}
         options={{ headerShown: false }}
@@ -113,14 +107,6 @@ function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="TabTwo"
-        component={TabTwoScreen}
-        options={{
-          title: "Stats",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-        }}
-      />
-      <BottomTab.Screen
-        name="TabThree"
         component={TabTwoScreen}
         options={{
           title: "Stats",
