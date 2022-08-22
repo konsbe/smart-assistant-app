@@ -23,6 +23,10 @@ import {
 import LinkingConfiguration from "./LinkingConfiguration";
 import { Text } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import HomeScreen from "../screens/Home/Home";
+import ProfileScreen from "../screens/Profile/Profile";
+import HomeRoute from "../screens/Home";
+
 export default function Navigation({
   colorScheme,
 }: {
@@ -84,7 +88,7 @@ function BottomTabNavigator() {
     >
       <BottomTab.Screen
         name="TabOne"
-        component={TabOneScreen}
+        component={HomeRoute}
         options={({ navigation }: RootTabScreenProps<"TabOne">) => ({
           title: "Home",
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
@@ -107,28 +111,13 @@ function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="TabTwo"
-        component={TabTwoScreen}
+        component={ProfileScreen}
         options={{
           title: "Stats",
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
     </BottomTab.Navigator>
-  );
-}
-function UpperTabNavigator() {
-  const colorScheme = useColorScheme();
-
-  return (
-    <Tab.Navigator
-      initialRouteName="TabOne"
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme].tint,
-      }}
-    >
-      <Tab.Screen name="Home" component={TabTwoScreen} />
-      <Tab.Screen name="Settings" component={TabTwoScreen} />
-    </Tab.Navigator>
   );
 }
 

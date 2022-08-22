@@ -8,7 +8,7 @@ export default function HomeScreen({ navigation }) {
         onPress={() => navigation.navigate("Home")}
         style={{ fontSize: 26, fontWeight: "bold" }}
       >
-        Details Screen
+        Home Screen
       </Text>
     </View>
   );
