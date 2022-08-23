@@ -1,6 +1,7 @@
 import * as React from "react";
 import { View, Text } from "react-native";
 import { EnumHomeTypes, RootTabScreenProps } from "../../../types";
+import AboutScreen from "./About";
 
 export default function WelcomeScreen({
   navigation,
@@ -8,7 +9,8 @@ export default function WelcomeScreen({
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <Text
-        onPress={() => navigation.replace("Root")}
+        onPress={() => navigation.push("Route")}
+        // onPress={() => navigation.push("Route", { route: "Home" })}
         style={{ fontSize: 26, fontWeight: "bold" }}
       >
         Welcome

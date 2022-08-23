@@ -9,8 +9,8 @@ import {
   NavigatorScreenParams,
 } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import HomeScreen from "./views/Home/Routes/Home";
-import ProfileScreen from "./views/Profile/Routes/Profile";
+import WelcomeScreen from "./views/Home/Routes/Welcome";
+import DetailsScreen from "./views/Profile/Routes/Details";
 
 declare global {
   namespace ReactNavigation {
@@ -20,6 +20,15 @@ declare global {
 
 export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
+  Route: NavigatorScreenParams<RootTabParamList> | undefined;
+  Home: NavigatorScreenParams<RootTabParamList> | undefined;
+  Welcome: NavigatorScreenParams<RootTabParamList> | undefined;
+  About: NavigatorScreenParams<RootTabParamList> | undefined;
+  WatchLive: NavigatorScreenParams<RootTabParamList> | undefined;
+  Profile: NavigatorScreenParams<RootTabParamList> | undefined;
+  Details: NavigatorScreenParams<RootTabParamList> | undefined;
+  Todo: NavigatorScreenParams<RootTabParamList> | undefined;
+  Settings: NavigatorScreenParams<RootTabParamList> | undefined;
   Modal: undefined;
   NotFound: undefined;
   Screen: NavigatorScreenParams<RootTabParamList> | undefined | any;
@@ -78,9 +87,9 @@ export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
   >;
 export enum EnumHomeTypes {
   Home = "Home",
+  Welcome = "Welcome",
   About = "About",
   WatchLive = "WatchLive",
-  Welcome = "Welcome",
 }
 export enum EnumProfileTypes {
   Profile = "Profile",
@@ -90,11 +99,11 @@ export enum EnumProfileTypes {
 }
 export const RoutesMain = [
   {
-    component: HomeScreen,
+    component: WelcomeScreen,
     name: EnumHomeTypes.Home,
   },
   {
-    component: ProfileScreen,
+    component: DetailsScreen,
     name: EnumProfileTypes.Profile,
   },
 ];
