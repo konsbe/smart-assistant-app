@@ -3,22 +3,22 @@ import React from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import UpperNavigator from "../../navigation/UpperNavigator";
 import SettingsScreen from "../Profile/Routes/Settings";
-import ProfileScreen from "./Routes/Profile";
 import DetailsScreen from "./Routes/Details";
 import { EnumProfileTypes } from "../../types";
+import TodoScreen from "./Routes/Todo";
 
 export const RoutesProfile = [
   {
-    component: ProfileScreen,
-    name: EnumProfileTypes.Profile,
+    component: DetailsScreen,
+    name: EnumProfileTypes.Details,
+  },
+  {
+    component: TodoScreen,
+    name: EnumProfileTypes.Todo,
   },
   {
     component: SettingsScreen,
     name: EnumProfileTypes.Settings,
-  },
-  {
-    component: DetailsScreen,
-    name: EnumProfileTypes.Details,
   },
 ];
 

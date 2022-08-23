@@ -1,14 +1,15 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import React from "react";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import { RootTabParamList } from "../../types";
+import { EnumHomeTypes, EnumProfileTypes, RootTabParamList } from "../../types";
 
 const Tab = createMaterialTopTabNavigator<RootTabParamList>();
+type RootParams = keyof RootTabParamList | EnumHomeTypes | EnumProfileTypes;
 
 interface IProps {
   components: Array<{
     component: React.ComponentType<any>;
-    name: keyof RootTabParamList;
+    name: RootParams;
   }>;
 }
 const MyTabs = ({
@@ -16,12 +17,12 @@ const MyTabs = ({
 }: {
   components: Array<{
     component: React.ComponentType<any>;
-    name: keyof RootTabParamList;
+    name: RootParams;
   }>;
 }) => {
   return (
     <Tab.Navigator
-      initialRouteName={components[0].name}
+      // initialRouteName={components[0].name}
       screenOptions={{
         tabBarActiveTintColor: "#000000",
       }}

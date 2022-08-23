@@ -1,16 +1,16 @@
-import { StatusBar, StyleSheet, Text, View } from "react-native";
+import { StatusBar, StyleSheet } from "react-native";
 import React from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import UpperNavigator from "../../navigation/UpperNavigator";
 import AboutScreen from "./Routes/About";
-import HomeScreen from "./Routes/Home";
 import WatchLiveScreen from "./Routes/WatchLive";
 import { EnumHomeTypes } from "../../types";
+import WelcomeScreen from "./Routes/Welcome";
 
 export const RoutesHome = [
   {
-    component: HomeScreen,
-    name: EnumHomeTypes.Home,
+    component: WelcomeScreen,
+    name: EnumHomeTypes.Welcome,
   },
   {
     component: AboutScreen,

@@ -9,12 +9,8 @@ import {
   NavigatorScreenParams,
 } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import AboutScreen from "./views/Home/Routes/About";
 import HomeScreen from "./views/Home/Routes/Home";
-import WatchLiveScreen from "./views/Home/Routes/WatchLive";
-import DetailsScreen from "./views/Profile/Routes/Details";
 import ProfileScreen from "./views/Profile/Routes/Profile";
-import SettingsScreen from "./views/Profile/Routes/Settings";
 
 declare global {
   namespace ReactNavigation {
@@ -42,28 +38,35 @@ export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
 
 export type RootTabParamList = {
   Home: {
-    component: React.Component;
+    component: React.Component | JSX.Element;
     name: EnumHomeTypes.Home;
   };
-
+  Welcome: {
+    component: React.Component | JSX.Element;
+    name: EnumHomeTypes.Welcome;
+  };
   About: {
-    component: React.Component;
+    component: React.Component | JSX.Element;
     name: EnumHomeTypes.About;
   };
   WatchLive: {
-    component: React.Component;
+    component: React.Component | JSX.Element;
     name: EnumHomeTypes.WatchLive;
   };
   Profile: {
-    component: React.Component;
+    component: React.Component | JSX.Element;
     name: EnumProfileTypes.Profile;
   };
   Details: {
-    component: React.Component;
+    component: React.Component | JSX.Element;
     name: EnumProfileTypes.Details;
   };
+  Todo: {
+    component: React.Component | JSX.Element;
+    name: EnumProfileTypes.Todo;
+  };
   Settings: {
-    component: React.Component;
+    component: React.Component | JSX.Element;
     name: EnumProfileTypes.Settings;
   };
 };
@@ -73,15 +76,17 @@ export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
     BottomTabScreenProps<RootTabParamList, Screen>,
     NativeStackScreenProps<RootStackParamList>
   >;
-export enum EnumProfileTypes {
-  Profile = "Profile",
-  Settings = "Settings",
-  Details = "Details",
-}
 export enum EnumHomeTypes {
   Home = "Home",
   About = "About",
   WatchLive = "WatchLive",
+  Welcome = "Welcome",
+}
+export enum EnumProfileTypes {
+  Profile = "Profile",
+  Settings = "Settings",
+  Details = "Details",
+  Todo = "Todo",
 }
 export const RoutesMain = [
   {
@@ -91,34 +96,5 @@ export const RoutesMain = [
   {
     component: ProfileScreen,
     name: EnumProfileTypes.Profile,
-  },
-];
-export const RoutesHome = [
-  {
-    component: HomeScreen,
-    name: EnumHomeTypes.Home,
-  },
-  {
-    component: AboutScreen,
-    name: EnumHomeTypes.About,
-  },
-  {
-    component: WatchLiveScreen,
-    name: EnumHomeTypes.WatchLive,
-  },
-];
-
-export const RoutesProfile = [
-  {
-    component: ProfileScreen,
-    name: EnumProfileTypes.Profile,
-  },
-  {
-    component: SettingsScreen,
-    name: EnumProfileTypes.Settings,
-  },
-  {
-    component: DetailsScreen,
-    name: EnumProfileTypes.Details,
   },
 ];
