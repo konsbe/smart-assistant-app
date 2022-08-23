@@ -22,6 +22,7 @@ import LinkingConfiguration from "./../LinkingConfiguration";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeRoute from "../../views/Home";
 import ProfileRoute from "../../views/Profile";
+import * as Linking from "expo-linking";
 
 export default function BottomNavigation({
   colorScheme,
@@ -30,7 +31,17 @@ export default function BottomNavigation({
 }) {
   return (
     <NavigationContainer
-      linking={LinkingConfiguration}
+      linking={{
+        prefixes: [Linking.createURL("/")],
+        config: {
+          initialRouteName: "HomeScreen",
+          screens: {
+            HomeScreen: "home",
+            AboutScreen: "about",
+            WatchLiveScreen: "watch",
+          },
+        },
+      }}
       theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
     >
       <RootNavigator />
