@@ -20,6 +20,7 @@ import HomeRoute from "../../routes/Home";
 import ProfileRoute from "../../routes/Profile";
 import SignInScreen from "../../routes/SignIn";
 import ExitButton from "../../components/Buttons/ExitButton";
+import UserContext from "../../context/UserContext";
 
 /**
  * A root stack navigator is often used for displaying modals on top of all other content.

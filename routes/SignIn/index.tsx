@@ -7,11 +7,20 @@ import { IUserContext, UserContext } from "../../context/UserContext";
 export default function SignInScreen({
   navigation,
 }: RootTabScreenProps<EnumScreenTypes.SignIn>) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const { userName, userLessons } =
-    React.useContext<Partial<IUserContext>>(UserContext);
-
+  const [email, setEmail] = useState<string>();
+  const [password, setPassword] = useState<string>();
+  const { userContextData, setUserContextData } =
+    React.useContext<any>(UserContext);
+  React.useEffect(() => {
+    setUserContextData({ ...userContextData, userName: email });
+  }, [email]);
+  const handleSubmit = (e: any) => {
+    if (userContextData.userName === "fuck") {
+      alert("Hell Yeah");
+    }
+    console.log("after state: ", userContextData);
+    navigation.navigate(EnumScreenTypes.Root);
+  };
   return (
     <View
       style={{
@@ -23,7 +32,7 @@ export default function SignInScreen({
       <View>
         <TextInput
           style={styles.TextInput}
-          placeholder="Email."
+          placeholder="User Name"
           placeholderTextColor="#003f5c"
           onChangeText={(email) => setEmail(email)}
         />
@@ -37,10 +46,7 @@ export default function SignInScreen({
           onChangeText={(password) => setPassword(password)}
         />
       </View>
-      <TouchableOpacity
-        style={styles.loginBtn}
-        onPress={(e) => navigation.navigate(EnumScreenTypes.Root)}
-      >
+      <TouchableOpacity style={styles.loginBtn} onPress={handleSubmit}>
         <Text>LOGIN</Text>
       </TouchableOpacity>
     </View>

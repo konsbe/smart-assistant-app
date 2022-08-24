@@ -11,6 +11,7 @@ import {
 } from "../../types";
 import { useNavigation } from "@react-navigation/native";
 import { StackActions } from "@react-navigation/native";
+import UserContext from "../../context/UserContext";
 
 export default function ExitButton() {
   const navigation = useNavigation();
