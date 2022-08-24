@@ -21,12 +21,10 @@ import {
   RootTabParamList,
   RootTabScreenProps,
 } from "../../types";
-import LinkingConfiguration from "./../LinkingConfiguration";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeRoute from "../../routes/Home";
 import ProfileRoute from "../../routes/Profile";
-import * as Linking from "expo-linking";
-
+import SignInScreen from "../../routes/SignIn";
 
 /**
  * A root stack navigator is often used for displaying modals on top of all other content.
@@ -37,18 +35,19 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 export default function BottomNavigation() {
   return (
     <Stack.Navigator>
+      <Stack.Screen name={EnumScreenTypes.SignIn} component={SignInScreen} />
       <Stack.Screen
-        name="Root"
+        name={EnumScreenTypes.Root}
         component={TabNavigator}
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="NotFound"
+        name={EnumScreenTypes.NotFound}
         component={NotFoundScreen}
         options={{ title: "Oops!" }}
       />
       <Stack.Group screenOptions={{ presentation: "modal" }}>
-        <Stack.Screen name="Modal" component={ModalScreen} />
+        <Stack.Screen name={EnumScreenTypes.Modal} component={ModalScreen} />
       </Stack.Group>
     </Stack.Navigator>
   );

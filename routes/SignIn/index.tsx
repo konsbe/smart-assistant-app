@@ -1,12 +1,20 @@
 import * as React from "react";
 import { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import {
+  EnumHomeTypes,
+  EnumScreenTypes,
+  RootTabParamList,
+  RootTabScreenProps,
+} from "../../types";
 
 interface IProps {
   setState: (value: boolean) => void;
 }
 
-export default function SignInScreen(props: IProps) {
+export default function SignInScreen({
+  navigation,
+}: RootTabScreenProps<EnumScreenTypes.SignIn>) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const goToRoutes = () => {};
@@ -37,7 +45,7 @@ export default function SignInScreen(props: IProps) {
       </View>
       <TouchableOpacity
         style={styles.loginBtn}
-        onPress={() => props.setState(true)}
+        onPress={(e) => navigation.navigate(EnumScreenTypes.Root)}
       >
         <Text>LOGIN</Text>
       </TouchableOpacity>

@@ -1,6 +1,10 @@
 import * as React from "react";
 import { View, Text } from "react-native";
-import { EnumHomeTypes, RootTabScreenProps } from "../../../types";
+import {
+  EnumHomeTypes,
+  EnumScreenTypes,
+  RootTabScreenProps,
+} from "../../../types";
 
 export default function AboutScreen({
   navigation,
@@ -8,7 +12,7 @@ export default function AboutScreen({
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <Text
-        onPress={() => navigation.navigate("Root")}
+        onPress={() => navigation.navigate(EnumScreenTypes.SignIn)}
         style={{ fontSize: 26, fontWeight: "bold" }}
       >
         About Screen

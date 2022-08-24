@@ -30,6 +30,7 @@ export type RootStackParamList = {
   Settings: NavigatorScreenParams<RootTabParamList> | undefined;
   Modal: undefined;
   NotFound: undefined;
+  SignIn: NavigatorScreenParams<RootTabParamList> | undefined;
   Screen: NavigatorScreenParams<RootTabParamList> | undefined | any;
 };
 
@@ -58,8 +59,10 @@ export enum EnumProfileTypes {
   Todo = "Todo",
 }
 export enum EnumScreenTypes {
+  Root = "Root",
   Modal = "Modal",
   NotFound = "NotFound",
+  SignIn = "SignIn",
 }
 
 export type RootParams = {

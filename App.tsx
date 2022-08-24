@@ -8,10 +8,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import useCachedResources from "./hooks/useCachedResources";
 import useColorScheme from "./hooks/useColorScheme";
 import LinkingConfiguration from "./LinkingConfiguration";
-import BottomNavigation from "./navigation/BottomNavigator";
-import ModalScreen from "./routes/ModalScreen";
-import NotFoundScreen from "./routes/NotFoundScreen";
-import SignInScreen from "./routes/SignIn";
+import MainRoute from "./routes";
 
 // export default function App() {
 //   return (
@@ -41,30 +38,9 @@ export default function App() {
   } else {
     return (
       <SafeAreaProvider>
-        {!state ? (
-          <NavigationContainer>
-            {/* <Stack.Navigator>
-              <Stack.Screen name="Root" options={{ headerShown: false }}>
-                {() => <SignInScreen setState={setState} />}
-              </Stack.Screen>
-              <Stack.Screen
-                name="NotFound"
-                component={NotFoundScreen}
-                options={{ title: "Oops!" }}
-              />
-              <Stack.Group screenOptions={{ presentation: "modal" }}>
-                <Stack.Screen name="Modal" component={ModalScreen} />
-              </Stack.Group>
-            </Stack.Navigator> */}
-            <SignInScreen setState={setState} />
-          </NavigationContainer>
-        ) : (
-          <NavigationContainer linking={LinkingConfiguration}>
-            {/* <NavigationContainer > */}
-            <BottomNavigation colorScheme={colorScheme} />
-            <StatusBar />
-          </NavigationContainer>
-        )}
+        <NavigationContainer linking={LinkingConfiguration}>
+          <MainRoute />
+        </NavigationContainer>
       </SafeAreaProvider>
     );
   }
