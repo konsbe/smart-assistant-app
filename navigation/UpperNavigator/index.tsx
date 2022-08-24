@@ -12,6 +12,7 @@ import NotFoundScreen from "../../views/NotFoundScreen";
 
 const Tab = createMaterialTopTabNavigator<RootTabParamList>();
 type RootParams = keyof RootTabParamList | EnumHomeTypes | EnumProfileTypes;
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 interface IProps {
   components: Array<{
@@ -19,26 +20,18 @@ interface IProps {
     name: RootParams;
   }>;
 }
-const MyTabs = ({
-  components,
-}: {
-  components: Array<{
-    component: React.ComponentType<any>;
-    name: RootParams;
-  }>;
-}) => {
+export default function UpperNavigator(props: IProps) {
   return (
     <Tab.Navigator
-      // initialRouteName={components[0].name}
       screenOptions={{
         tabBarActiveTintColor: "#000000",
       }}
     >
-      {components.map(({ component, name }, index) => {
+      {props.components.map(({ component, name }, index) => {
         return (
           <Tab.Screen
-            name={name as RootParams}
             component={component}
+            name={name}
             options={{ tabBarLabel: name }}
             key={index}
           />
@@ -46,37 +39,57 @@ const MyTabs = ({
       })}
     </Tab.Navigator>
   );
-};
-
-const Stack = createNativeStackNavigator<RootStackParamList>();
-
-function UpperNavigator(props: IProps) {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="Route"
-        // component={() => <UpperTabNavigator components={props.components} />} //this is weak it may cause proplems prever child props
-        options={{ headerShown: false }}
-      >
-        {() => <UpperTabNavigator components={props.components} />}
-      </Stack.Screen>
-      <Stack.Screen
-        name="NotFound"
-        component={NotFoundScreen}
-        options={{ title: "Oops!" }}
-      />
-    </Stack.Navigator>
-  );
 }
 
-export const UpperTabNavigator = (props: IProps): JSX.Element => {
-  return (
-    <>
-      <MyTabs components={props.components} />
-    </>
-  );
-};
-
-export default UpperNavigator;
-
 const styles = StyleSheet.create({});
+
+// const MyTabs = ({
+//   components,
+// }: {
+//   components: Array<{
+//     component: React.ComponentType<any>;
+//     name: RootParams;
+//   }>;
+// }) => {
+//   return (
+//     <Stack.Navigator>
+//       {components.map(({ component, name }, index) => {
+//         return (
+//           <Stack.Screen
+//             name={name}
+//             component={component}
+//             options={{ headerShown: false }}
+//             key={index}
+//           />
+//         );
+//       })}
+//     </Stack.Navigator>
+//   );
+// };
+
+// export const UpperTabNavigator = (props: IProps): JSX.Element => {
+//   return (
+//     <>
+//       <MyTabs components={props.components} />
+//     </>
+//   );
+// };
+/**this is on comment its for passing components as childrents */
+// export default function UpperNavigator(props: IProps) {
+//   return (
+//     <Stack.Navigator>
+//       <Stack.Screen
+//         name="Route"
+//         // component={() => <UpperTabNavigator components={props.components} />} //this is weak it may cause proplems prever child props
+//         options={{ headerShown: false }}
+//       >
+//         {() => <UpperTabNavigator components={props.components} />}
+//       </Stack.Screen>
+//       <Stack.Screen
+//         name="NotFound"
+//         component={NotFoundScreen}
+//         options={{ title: "Oops!" }}
+//       />
+//     </Stack.Navigator>
+//   );
+// }

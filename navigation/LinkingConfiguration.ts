@@ -19,7 +19,7 @@ const LinkingConfiguration: LinkingOptions<RootStackParamList> = {
           Welcome: "Welcome",
         },
       },
-      // Home: "Home",
+      Home: "Home",
       // Home: "Home",
       // Home: "Home",
       // Home: "Home",

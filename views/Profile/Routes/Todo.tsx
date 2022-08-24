@@ -8,7 +8,7 @@ export default function TodoScreen({
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <Text
-        onPress={() => navigation.navigate("Root")}
+        onPress={() => navigation.navigate(EnumProfileTypes.Details)}
         style={{ fontSize: 26, fontWeight: "bold" }}
       >
         Todo

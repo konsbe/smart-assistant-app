@@ -14,6 +14,9 @@ import useColorScheme from "../../hooks/useColorScheme";
 import ModalScreen from "../../views/ModalScreen";
 import NotFoundScreen from "../../views/NotFoundScreen";
 import {
+  EnumHomeTypes,
+  EnumProfileTypes,
+  EnumScreenTypes,
   RootStackParamList,
   RootTabParamList,
   RootTabScreenProps,
@@ -24,30 +27,30 @@ import HomeRoute from "../../views/Home";
 import ProfileRoute from "../../views/Profile";
 import * as Linking from "expo-linking";
 
-export default function BottomNavigation({
-  colorScheme,
-}: {
-  colorScheme: ColorSchemeName;
-}) {
-  return (
-    <NavigationContainer
-      linking={{
-        prefixes: [Linking.createURL("/")],
-        config: {
-          initialRouteName: "HomeScreen",
-          screens: {
-            HomeScreen: "home",
-            AboutScreen: "about",
-            WatchLiveScreen: "watch",
-          },
-        },
-      }}
-      theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
-    >
-      <RootNavigator />
-    </NavigationContainer>
-  );
-}
+// export default function BottomNavigation({
+//   colorScheme,
+// }: {
+//   colorScheme: ColorSchemeName;
+// }) {
+//   return (
+//     <NavigationContainer
+//       linking={{
+//         prefixes: [Linking.createURL("/")],
+//         config: {
+//           initialRouteName: "HomeScreen",
+//           screens: {
+//             HomeScreen: "home",
+//             AboutScreen: "about",
+//             WatchLiveScreen: "watch",
+//           },
+//         },
+//       }}
+//       theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+//     >
+//       <RootNavigator />
+//     </NavigationContainer>
+//   );
+// }
 
 /**
  * A root stack navigator is often used for displaying modals on top of all other content.
@@ -55,12 +58,12 @@ export default function BottomNavigation({
  */
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-function RootNavigator() {
+export default function BottomNavigation() {
   return (
     <Stack.Navigator>
       <Stack.Screen
         name="Root"
-        component={BottomTabNavigator}
+        component={TabNavigator}
         options={{ headerShown: false }}
       />
       <Stack.Screen
@@ -79,27 +82,27 @@ function RootNavigator() {
  * A bottom tab navigator displays tab buttons on the bottom of the display to switch views.
  * https://reactnavigation.org/docs/bottom-tab-navigator
  */
-const BottomTab = createBottomTabNavigator<RootTabParamList>();
+const Tab = createBottomTabNavigator<RootTabParamList>();
 
-function BottomTabNavigator() {
+function TabNavigator() {
   const colorScheme = useColorScheme();
 
   return (
-    <BottomTab.Navigator
-      initialRouteName="Home"
+    <Tab.Navigator
+      initialRouteName={EnumHomeTypes.Home}
       screenOptions={{
         tabBarActiveTintColor: "#000000",
       }}
     >
-      <BottomTab.Screen
-        name="Home"
+      <Tab.Screen
+        name={EnumHomeTypes.Home}
         component={HomeRoute}
-        options={({ navigation }: RootTabScreenProps<"Home">) => ({
-          title: "Home",
+        options={({ navigation }: RootTabScreenProps<EnumHomeTypes.Home>) => ({
+          title: EnumHomeTypes.Home,
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
           headerRight: () => (
             <Pressable
-              onPress={() => navigation.navigate("Modal")}
+              onPress={() => navigation.navigate(EnumScreenTypes.Modal)}
               style={({ pressed }) => ({
                 opacity: pressed ? 0.5 : 1,
               })}
@@ -114,15 +117,15 @@ function BottomTabNavigator() {
           ),
         })}
       />
-      <BottomTab.Screen
-        name="Profile"
+      <Tab.Screen
+        name={EnumProfileTypes.Profile}
         component={ProfileRoute}
         options={{
-          title: "Profile",
+          title: EnumProfileTypes.Profile,
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
-    </BottomTab.Navigator>
+    </Tab.Navigator>
   );
 }
 

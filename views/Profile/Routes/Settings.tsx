@@ -1,6 +1,10 @@
 import * as React from "react";
 import { View, Text } from "react-native";
-import { EnumProfileTypes, RootTabScreenProps } from "../../../types";
+import {
+  EnumHomeTypes,
+  EnumProfileTypes,
+  RootTabScreenProps,
+} from "../../../types";
 
 export default function SettingsScreen({
   navigation,
@@ -8,7 +12,7 @@ export default function SettingsScreen({
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <Text
-        onPress={() => navigation.navigate("Root")}
+        onPress={() => navigation.navigate(EnumHomeTypes.WatchLive)}
         style={{ fontSize: 26, fontWeight: "bold" }}
       >
         Settings Screen

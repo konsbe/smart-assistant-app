@@ -7,6 +7,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import useCachedResources from "./hooks/useCachedResources";
 import useColorScheme from "./hooks/useColorScheme";
+import LinkingConfiguration from "./LinkingConfiguration";
 import BottomNavigation from "./navigation/BottomNavigator";
 import SignInScreen from "./views/SignIn";
 
@@ -27,7 +28,7 @@ import SignInScreen from "./views/SignIn";
 //     justifyContent: 'center',
 //   },
 // });
-const NavBar = createNativeStackNavigator<any>();
+const Stack = createNativeStackNavigator<any>();
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -39,12 +40,15 @@ export default function App() {
     return (
       <SafeAreaProvider>
         {!state ? (
-          <SignInScreen setState={setState} />
+          <NavigationContainer>
+            <SignInScreen setState={setState} />
+          </NavigationContainer>
         ) : (
-          <>
+          <NavigationContainer linking={LinkingConfiguration}>
+            {/* <NavigationContainer > */}
             <BottomNavigation colorScheme={colorScheme} />
             <StatusBar />
-          </>
+          </NavigationContainer>
         )}
       </SafeAreaProvider>
     );
