@@ -104,10 +104,29 @@ function TabNavigator() {
       <Tab.Screen
         name={EnumProfileTypes.Profile}
         component={ProfileRoute}
-        options={{
+        options={({
+          navigation,
+        }: RootTabScreenProps<EnumProfileTypes.Profile>) => ({
           title: EnumProfileTypes.Profile,
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-        }}
+          headerRight: () => {
+            return (
+              <Pressable
+                onPress={() => navigation.navigate(EnumScreenTypes.SignIn)}
+                style={({ pressed }) => ({
+                  opacity: pressed ? 0.5 : 1,
+                })}
+              >
+                <Ionicons
+                  name="exit"
+                  size={25}
+                  color={Colors[colorScheme].text}
+                  style={{ marginRight: 15 }}
+                />
+              </Pressable>
+            );
+          },
+        })}
       />
     </Tab.Navigator>
   );
