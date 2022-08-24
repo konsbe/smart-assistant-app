@@ -9,6 +9,8 @@ import useCachedResources from "./hooks/useCachedResources";
 import useColorScheme from "./hooks/useColorScheme";
 import LinkingConfiguration from "./LinkingConfiguration";
 import BottomNavigation from "./navigation/BottomNavigator";
+import ModalScreen from "./views/ModalScreen";
+import NotFoundScreen from "./views/NotFoundScreen";
 import SignInScreen from "./views/SignIn";
 
 // export default function App() {
@@ -41,6 +43,19 @@ export default function App() {
       <SafeAreaProvider>
         {!state ? (
           <NavigationContainer>
+            {/* <Stack.Navigator>
+              <Stack.Screen name="Root" options={{ headerShown: false }}>
+                {() => <SignInScreen setState={setState} />}
+              </Stack.Screen>
+              <Stack.Screen
+                name="NotFound"
+                component={NotFoundScreen}
+                options={{ title: "Oops!" }}
+              />
+              <Stack.Group screenOptions={{ presentation: "modal" }}>
+                <Stack.Screen name="Modal" component={ModalScreen} />
+              </Stack.Group>
+            </Stack.Navigator> */}
             <SignInScreen setState={setState} />
           </NavigationContainer>
         ) : (

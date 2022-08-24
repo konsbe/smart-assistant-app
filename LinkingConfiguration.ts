@@ -13,17 +13,51 @@ import AboutScreen from "./views/Home/Routes/About";
 import WatchLiveScreen from "./views/Home/Routes/WatchLive";
 import WelcomeScreen from "./views/Home/Routes/Welcome";
 import { createAppContainer } from "react-navigation";
+import DetailsScreen from "./views/Profile/Routes/Details";
+import TodoScreen from "./views/Profile/Routes/Todo";
+import SettingsScreen from "./views/Profile/Routes/Settings";
 
-const screens = {
-  Welcome: {
-    screen: WelcomeScreen,
+// const screens = {
+//   Welcome: {
+//     screen: WelcomeScreen,
+//   },
+//   About: {
+//     screen: AboutScreen,
+//   },
+//   WatchLive: {
+//     screen: WatchLiveScreen
+//   },
+// };
+
+// const LinkingConfiguration: LinkingOptions<any> = {
+const LinkingConfiguration: LinkingOptions<RootStackParamList> = {
+  prefixes: [Linking.createURL("/")],
+  config: {
+    screens: {
+      Root: {
+        screens: {
+          Home: {
+            screens: {
+              Welcome: WelcomeScreen,
+              About: AboutScreen,
+              WatchLive: WatchLiveScreen,
+            },
+          },
+          Profile: {
+            screens: {
+              Details: DetailsScreen,
+              Todo: TodoScreen,
+              Settings: SettingsScreen,
+            },
+          },
+        },
+      },
+      Modal: "modal",
+      NotFound: "*",
+    },
   },
-  About: {
-    screen: AboutScreen,
-  },
-  WatchLive: WatchLiveScreen,
 };
-
+export default LinkingConfiguration;
 // home stack navigator screens
 // const HomeStack = createNativeStackNavigator({screens});
 

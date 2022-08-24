@@ -27,30 +27,6 @@ import HomeRoute from "../../views/Home";
 import ProfileRoute from "../../views/Profile";
 import * as Linking from "expo-linking";
 
-// export default function BottomNavigation({
-//   colorScheme,
-// }: {
-//   colorScheme: ColorSchemeName;
-// }) {
-//   return (
-//     <NavigationContainer
-//       linking={{
-//         prefixes: [Linking.createURL("/")],
-//         config: {
-//           initialRouteName: "HomeScreen",
-//           screens: {
-//             HomeScreen: "home",
-//             AboutScreen: "about",
-//             WatchLiveScreen: "watch",
-//           },
-//         },
-//       }}
-//       theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
-//     >
-//       <RootNavigator />
-//     </NavigationContainer>
-//   );
-// }
 
 /**
  * A root stack navigator is often used for displaying modals on top of all other content.
@@ -132,9 +108,36 @@ function TabNavigator() {
 /**
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
  */
+
 function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>["name"];
   color: string;
 }) {
   return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
 }
+
+
+// export default function BottomNavigation({
+//   colorScheme,
+// }: {
+//   colorScheme: ColorSchemeName;
+// }) {
+//   return (
+//     <NavigationContainer
+//       linking={{
+//         prefixes: [Linking.createURL("/")],
+//         config: {
+//           initialRouteName: "HomeScreen",
+//           screens: {
+//             HomeScreen: "home",
+//             AboutScreen: "about",
+//             WatchLiveScreen: "watch",
+//           },
+//         },
+//       }}
+//       theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+//     >
+//       <RootNavigator />
+//     </NavigationContainer>
+//   );
+// }

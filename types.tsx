@@ -21,7 +21,7 @@ export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
   Route: NavigatorScreenParams<RootTabParamList> | undefined;
   Home: NavigatorScreenParams<RootTabParamList> | undefined;
-  Welcome: NavigatorScreenParams<RootTabParamList> | undefined;
+  Welcome: any | undefined;
   About: NavigatorScreenParams<RootTabParamList> | undefined;
   WatchLive: NavigatorScreenParams<RootTabParamList> | undefined;
   Profile: NavigatorScreenParams<RootTabParamList> | undefined;

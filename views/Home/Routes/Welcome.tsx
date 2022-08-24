@@ -4,7 +4,7 @@ import { EnumHomeTypes, RootTabScreenProps } from "../../../types";
 
 export default function WelcomeScreen({
   navigation,
-}: RootTabScreenProps<EnumHomeTypes.Welcome>): JSX.Element {
+}: RootTabScreenProps<EnumHomeTypes.Welcome>) {
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <Text
