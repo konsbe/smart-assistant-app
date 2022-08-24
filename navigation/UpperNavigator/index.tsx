@@ -8,7 +8,7 @@ import {
   RootTabParamList,
 } from "../../types";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import NotFoundScreen from "../../views/NotFoundScreen";
+import NotFoundScreen from "../../routes/NotFoundScreen";
 
 const Tab = createMaterialTopTabNavigator<RootTabParamList>();
 type RootParams = keyof RootTabParamList | EnumHomeTypes | EnumProfileTypes;

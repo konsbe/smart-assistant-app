@@ -9,9 +9,9 @@ import useCachedResources from "./hooks/useCachedResources";
 import useColorScheme from "./hooks/useColorScheme";
 import LinkingConfiguration from "./LinkingConfiguration";
 import BottomNavigation from "./navigation/BottomNavigator";
-import ModalScreen from "./views/ModalScreen";
-import NotFoundScreen from "./views/NotFoundScreen";
-import SignInScreen from "./views/SignIn";
+import ModalScreen from "./routes/ModalScreen";
+import NotFoundScreen from "./routes/NotFoundScreen";
+import SignInScreen from "./routes/SignIn";
 
 // export default function App() {
 //   return (

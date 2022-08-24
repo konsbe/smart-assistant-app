@@ -11,8 +11,8 @@ import { ColorSchemeName, Pressable, View } from "react-native";
 
 import Colors from "../../constants/Colors";
 import useColorScheme from "../../hooks/useColorScheme";
-import ModalScreen from "../../views/ModalScreen";
-import NotFoundScreen from "../../views/NotFoundScreen";
+import ModalScreen from "../../routes/ModalScreen";
+import NotFoundScreen from "../../routes/NotFoundScreen";
 import {
   EnumHomeTypes,
   EnumProfileTypes,
@@ -23,8 +23,8 @@ import {
 } from "../../types";
 import LinkingConfiguration from "./../LinkingConfiguration";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import HomeRoute from "../../views/Home";
-import ProfileRoute from "../../views/Profile";
+import HomeRoute from "../../routes/Home";
+import ProfileRoute from "../../routes/Profile";
 import * as Linking from "expo-linking";
 
 
@@ -55,7 +55,7 @@ export default function BottomNavigation() {
 }
 
 /**
- * A bottom tab navigator displays tab buttons on the bottom of the display to switch views.
+ * A bottom tab navigator displays tab buttons on the bottom of the display to switch routes.
  * https://reactnavigation.org/docs/bottom-tab-navigator
  */
 const Tab = createBottomTabNavigator<RootTabParamList>();

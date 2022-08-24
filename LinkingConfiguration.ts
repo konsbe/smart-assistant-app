@@ -9,13 +9,13 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as Linking from "expo-linking";
 import { EnumHomeTypes, EnumProfileTypes } from "./types";
 import { RootStackParamList } from "./types";
-import AboutScreen from "./views/Home/Routes/About";
-import WatchLiveScreen from "./views/Home/Routes/WatchLive";
-import WelcomeScreen from "./views/Home/Routes/Welcome";
+import AboutScreen from "./routes/Home/Routes/About";
+import WatchLiveScreen from "./routes/Home/Routes/WatchLive";
+import WelcomeScreen from "./routes/Home/Routes/Welcome";
 import { createAppContainer } from "react-navigation";
-import DetailsScreen from "./views/Profile/Routes/Details";
-import TodoScreen from "./views/Profile/Routes/Todo";
-import SettingsScreen from "./views/Profile/Routes/Settings";
+import DetailsScreen from "./routes/Profile/Routes/Details";
+import TodoScreen from "./routes/Profile/Routes/Todo";
+import SettingsScreen from "./routes/Profile/Routes/Settings";
 
 // const screens = {
 //   Welcome: {
