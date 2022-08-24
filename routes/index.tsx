@@ -4,7 +4,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import BottomNavigation from "../navigation/BottomNavigator";
 import useColorScheme from "../hooks/useColorScheme";
 
-const MainRoute = () => {
+const MainRoute = (): JSX.Element => {
   const colorScheme = useColorScheme();
 
   return (

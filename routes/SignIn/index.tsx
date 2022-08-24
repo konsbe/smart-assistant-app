@@ -1,23 +1,17 @@
 import * as React from "react";
 import { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
-import {
-  EnumHomeTypes,
-  EnumScreenTypes,
-  RootTabParamList,
-  RootTabScreenProps,
-} from "../../types";
-
-interface IProps {
-  setState: (value: boolean) => void;
-}
+import { EnumScreenTypes, RootTabScreenProps } from "../../types";
+import { IUserContext, UserContext } from "../../context/UserContext";
 
 export default function SignInScreen({
   navigation,
 }: RootTabScreenProps<EnumScreenTypes.SignIn>) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const goToRoutes = () => {};
+  const { userName, userLessons } =
+    React.useContext<Partial<IUserContext>>(UserContext);
+
   return (
     <View
       style={{

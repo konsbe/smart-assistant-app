@@ -4,6 +4,7 @@ import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import UserContextProvider from "./context/UserContext";
 
 import useCachedResources from "./hooks/useCachedResources";
 import useColorScheme from "./hooks/useColorScheme";
@@ -39,7 +40,9 @@ export default function App() {
     return (
       <SafeAreaProvider>
         <NavigationContainer linking={LinkingConfiguration}>
-          <MainRoute />
+          <UserContextProvider>
+            <MainRoute />
+          </UserContextProvider>
         </NavigationContainer>
       </SafeAreaProvider>
     );
