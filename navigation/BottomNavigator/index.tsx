@@ -19,6 +19,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeRoute from "../../routes/Home";
 import ProfileRoute from "../../routes/Profile";
 import SignInScreen from "../../routes/SignIn";
+import ExitButton from "../../components/Buttons/ExitButton";
 
 /**
  * A root stack navigator is often used for displaying modals on top of all other content.
@@ -84,19 +85,7 @@ function TabNavigator() {
                   style={{ marginRight: 15 }}
                 />
               </Pressable>
-              <Pressable
-                onPress={() => navigation.navigate(EnumScreenTypes.SignIn)}
-                style={({ pressed }) => ({
-                  opacity: pressed ? 0.5 : 1,
-                })}
-              >
-                <Ionicons
-                  name="exit"
-                  size={25}
-                  color={Colors[colorScheme].text}
-                  style={{ marginRight: 15 }}
-                />
-              </Pressable>
+              <ExitButton />
             </View>
           ),
         })}
@@ -110,21 +99,7 @@ function TabNavigator() {
           title: EnumProfileTypes.Profile,
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
           headerRight: () => {
-            return (
-              <Pressable
-                onPress={() => navigation.navigate(EnumScreenTypes.SignIn)}
-                style={({ pressed }) => ({
-                  opacity: pressed ? 0.5 : 1,
-                })}
-              >
-                <Ionicons
-                  name="exit"
-                  size={25}
-                  color={Colors[colorScheme].text}
-                  style={{ marginRight: 15 }}
-                />
-              </Pressable>
-            );
+            return <ExitButton />;
           },
         })}
       />

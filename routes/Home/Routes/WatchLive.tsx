@@ -5,7 +5,6 @@ import { EnumHomeTypes, RootTabScreenProps } from "../../../types";
 export default function WatchLiveScreen({
   navigation,
 }: RootTabScreenProps<EnumHomeTypes.WatchLive>) {
-  console.log(navigation);
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <Text
