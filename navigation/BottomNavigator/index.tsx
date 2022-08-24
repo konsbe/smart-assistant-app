@@ -1,10 +1,4 @@
-import { FontAwesome } from "@expo/vector-icons";
-import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import {
-  NavigationContainer,
-  DefaultTheme,
-  DarkTheme,
-} from "@react-navigation/native";
+import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
 import { ColorSchemeName, Pressable, View } from "react-native";
@@ -76,19 +70,34 @@ function TabNavigator() {
           title: EnumHomeTypes.Home,
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
           headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate(EnumScreenTypes.Modal)}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}
-            >
-              <FontAwesome
-                name="info-circle"
-                size={25}
-                color={Colors[colorScheme].text}
-                style={{ marginRight: 15 }}
-              />
-            </Pressable>
+            <View style={{ flexDirection: "row" }}>
+              <Pressable
+                onPress={() => navigation.navigate(EnumScreenTypes.Modal)}
+                style={({ pressed }) => ({
+                  opacity: pressed ? 0.5 : 1,
+                })}
+              >
+                <FontAwesome
+                  name="info-circle"
+                  size={25}
+                  color={Colors[colorScheme].text}
+                  style={{ marginRight: 15 }}
+                />
+              </Pressable>
+              <Pressable
+                onPress={() => navigation.navigate(EnumScreenTypes.SignIn)}
+                style={({ pressed }) => ({
+                  opacity: pressed ? 0.5 : 1,
+                })}
+              >
+                <Ionicons
+                  name="exit"
+                  size={25}
+                  color={Colors[colorScheme].text}
+                  style={{ marginRight: 15 }}
+                />
+              </Pressable>
+            </View>
           ),
         })}
       />
@@ -114,7 +123,6 @@ function TabBarIcon(props: {
 }) {
   return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
 }
-
 
 // export default function BottomNavigation({
 //   colorScheme,
