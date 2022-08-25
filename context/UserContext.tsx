@@ -19,7 +19,7 @@ export const INITAL_VALUES: IUserContextData = {
 
 export const UserContext = createContext<IUserContextData | null>(null);
 
-const UserContextProvider = ({ children }: { children: JSX.Element }) => {
+const UserContextProvider: any = ({ children }: any) => {
   const [userContextData, setUserContextData] =
     React.useState<IUserContextData>(INITAL_VALUES);
   const state: any = {

@@ -2,7 +2,7 @@ import * as React from "react";
 import { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import { EnumScreenTypes, RootTabScreenProps } from "../../types";
-import { IUserContext, UserContext } from "../../context/UserContext";
+import { UserContext } from "../../context/UserContext";
 
 export default function SignInScreen({
   navigation,
@@ -15,10 +15,7 @@ export default function SignInScreen({
     setUserContextData({ ...userContextData, userName: email });
   }, [email]);
   const handleSubmit = (e: any) => {
-    if (userContextData.userName === "fuck") {
-      alert("Hell Yeah");
-    }
-    console.log("after state: ", userContextData);
+    alert(`Hell Yeah ${email}`);
     navigation.navigate(EnumScreenTypes.Root);
   };
   return (

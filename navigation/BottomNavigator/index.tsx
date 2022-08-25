@@ -2,7 +2,7 @@ import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
 import { ColorSchemeName, Pressable, View } from "react-native";
-
+import { Text } from "react-native";
 import Colors from "../../constants/Colors";
 import useColorScheme from "../../hooks/useColorScheme";
 import ModalScreen from "../../routes/ModalScreen";
@@ -21,6 +21,7 @@ import ProfileRoute from "../../routes/Profile";
 import SignInScreen from "../../routes/SignIn";
 import ExitButton from "../../components/Buttons/ExitButton";
 import UserContext from "../../context/UserContext";
+import { StackActions } from "@react-navigation/native";
 
 /**
  * A root stack navigator is often used for displaying modals on top of all other content.
@@ -28,15 +29,17 @@ import UserContext from "../../context/UserContext";
  */
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-export default function BottomNavigation() {
+export default function BottomNavigation({ contextData }: any) {
   return (
     <Stack.Navigator>
       <Stack.Screen name={EnumScreenTypes.SignIn} component={SignInScreen} />
       <Stack.Screen
         name={EnumScreenTypes.Root}
-        component={TabNavigator}
+        // component={TabNavigator}
         options={{ headerShown: false }}
-      />
+      >
+        {() => <TabNavigator contextData={contextData} />}
+      </Stack.Screen>
       <Stack.Screen
         name={EnumScreenTypes.NotFound}
         component={NotFoundScreen}
@@ -55,7 +58,7 @@ export default function BottomNavigation() {
  */
 const Tab = createBottomTabNavigator<RootTabParamList>();
 
-function TabNavigator() {
+function TabNavigator({ contextData }: any) {
   const colorScheme = useColorScheme();
 
   return (
@@ -73,6 +76,15 @@ function TabNavigator() {
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
           headerRight: () => (
             <View style={{ flexDirection: "row" }}>
+              <Text
+                style={{
+                  fontSize: 20,
+                  fontWeight: "bold",
+                  marginRight: 5,
+                }}
+              >
+                {contextData.userName ? contextData.userName : "unkown"}
+              </Text>
               <Pressable
                 onPress={() => navigation.navigate(EnumScreenTypes.Modal)}
                 style={({ pressed }) => ({
@@ -94,13 +106,36 @@ function TabNavigator() {
       <Tab.Screen
         name={EnumProfileTypes.Profile}
         component={ProfileRoute}
+        listeners={({ navigation }) => ({
+          tabPress: (e) => {
+            // Prevent default action
+            e.preventDefault();
+            !contextData.userName
+              ? // Do something with the `navigation` object
+                navigation.dispatch(StackActions.popToTop())
+              : navigation.navigate(EnumProfileTypes.Profile);
+          },
+        })}
         options={({
           navigation,
         }: RootTabScreenProps<EnumProfileTypes.Profile>) => ({
           title: EnumProfileTypes.Profile,
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
           headerRight: () => {
-            return <ExitButton />;
+            return (
+              <View style={{ flexDirection: "row" }}>
+                <Text
+                  style={{
+                    fontSize: 20,
+                    fontWeight: "bold",
+                    marginRight: 5,
+                  }}
+                >
+                  {contextData.userName ? contextData.userName : "unkown"}
+                </Text>
+                <ExitButton />
+              </View>
+            );
           },
         })}
       />
