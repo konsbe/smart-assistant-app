@@ -1,44 +1,44 @@
 export const rooms = {
-  "Entrance Hall": {
+  'Entrance Hall': {
     temperature: 26,
     state: { lights: true, isEmpty: true },
-    image: require("./images/entranceHall.jpeg"),
+    image: require('./images/entranceHall.jpeg'),
   },
-  "Kitchen Room": {
+  'Kitchen Room': {
     temperature: 26,
     state: { lights: false, isEmpty: true },
     controllers: { kitchen: false, kitchenTemperature: 0 },
-    image: require("./images/kitchen.jpg"),
+    image: require('./images/kitchen.jpg'),
   },
-  "Living Room": {
+  'Living Room': {
     temperature: 22,
     state: { lights: false, isEmpty: false },
-    image: require("./images/livingRoom.jpg"),
+    image: require('./images/livingRoom.jpg'),
   },
-  "Bedroom 1": {
+  'Bedroom 1': {
     temperature: 22,
     state: { lights: false, isEmpty: false },
-    image: require("./images/bedroom.jpg"),
+    image: require('./images/bedroom.jpg'),
   },
   Bathroom: {
     temperature: 22,
     state: { lights: false, isEmpty: true },
-    image: require("./images/bathroom.jpg"),
+    image: require('./images/bathroom.jpg'),
   },
-  "Laundry Room": {
+  'Laundry Room': {
     temperature: 22,
     state: { lights: true, isEmpty: true },
-    image: require("./images/laundry.png"),
+    image: require('./images/laundry.png'),
   },
-  "Guest Room": {
+  'Guest Room': {
     temperature: 22,
     state: { lights: true, isEmpty: true },
-    image: require("./images/entranceHall.jpeg"),
+    image: require('./images/entranceHall.jpeg'),
   },
   Office: {
     temperature: 22,
     state: { lights: true, isEmpty: true },
     controllers: { pc: true },
-    image: require("./images/office.jpeg"),
+    image: require('./images/office.jpeg'),
   },
 };
