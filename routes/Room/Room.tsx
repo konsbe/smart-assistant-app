@@ -21,7 +21,6 @@ export default function RoomScreen({
   const [progress, setProgress] = useState<number>(0.3);
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
-  console.log("value: ", item);
 
   return (
     //  <ScrollView>
@@ -53,6 +52,7 @@ export default function RoomScreen({
         </TouchableOpacity>
       </View>
       <View style={styles.containerBar}>
+      <Text style={styles.text}>Light's: </Text>
       <Switch
         trackColor={{ false: "#767577", true: "#81b0ff" }}
         thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
@@ -75,6 +75,10 @@ const styles = StyleSheet.create({
   containerBar: {
     display: "flex",
     flexDirection: "row",
+    alignItems: "center",
+    // marginVertical:10,
+    width: "70%",
+    justifyContent:"space-between"
   },
   image: {
     width:"100%",
@@ -86,5 +90,8 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 30,
+  },
+  text: {
+    fontSize: 20,
   },
 });
