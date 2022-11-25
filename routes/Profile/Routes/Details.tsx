@@ -20,7 +20,7 @@ export default function DetailsScreen({
 }: RootTabScreenProps<EnumProfileTypes.Details>) {
   const [victoryMonthlyData, setVictoryMonthlyData] =
     useState(INITIAL_MONTHLY_DATA);
-  const [charge, setCharge] = useState(INITIAL_CHARGE_STATE);
+  const [charge, setCharge] = useState<any>(INITIAL_CHARGE_STATE);
   const [pieData, setPieData] = useState(INITIAL_PIE_CHART_DATA);
 
   const handleSubmit = () => {
@@ -44,7 +44,7 @@ export default function DetailsScreen({
     );
 
     setVictoryMonthlyData(
-      victoryMonthlyData.map((item, index) => {
+      victoryMonthlyData.map((item: any, index) => {
         let fmonth = item.x;
         if (cmonth.toString() === fmonth.toString()) {
           victoryMonthlyData[index].y =
@@ -61,16 +61,12 @@ export default function DetailsScreen({
   const VictorBarChart = useCallback(
     ({ victoryMonthlyData }: { victoryMonthlyData: any[] }) => {
       return <VictoryChartBar victoryMonthlyData={victoryMonthlyData} />;
-      return <></>;
     },
     [victoryMonthlyData]
   );
   const VictorLineChart = useCallback(
     ({ pieData }: { pieData: any[] }) => {
-      return (
-      // <></>
-          <CustomDataComponent pieData={pieData} />
-      );
+      return <CustomDataComponent pieData={pieData} />;
     },
     [pieData]
   );
@@ -78,19 +74,13 @@ export default function DetailsScreen({
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <ScrollView style={styles.scrollView}>
         <View style={styles.basicContainer}>
-          {/* <BarChart /> */}
-          {/* <VictoryChartBar/> */}
-          {/* <GraphChart/> */}
           <VictorBarChart victoryMonthlyData={victoryMonthlyData} />
           <ChartForm
             charge={charge}
             setCharge={setCharge}
             handleSubmit={handleSubmit}
           />
-          <VictorLineChart
-            // victoryMonthlyData={victoryMonthlyData}
-            pieData={pieData}
-          />
+          <VictorLineChart pieData={pieData} />
         </View>
       </ScrollView>
     </View>

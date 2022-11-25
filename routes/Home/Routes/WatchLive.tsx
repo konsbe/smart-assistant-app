@@ -10,7 +10,12 @@ import {
 import ModalPoup from "../../../components/Modal";
 import { EnumHomeTypes, RootTabScreenProps } from "../../../types";
 import { rooms } from "../../../smartHome";
-import { FontAwesome5, Ionicons, FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
+import {
+  FontAwesome5,
+  Ionicons,
+  FontAwesome,
+  MaterialCommunityIcons,
+} from "@expo/vector-icons";
 import { VectorIcon } from "../../../components/VectorIcon";
 
 export type IArray = Array<{
@@ -39,9 +44,10 @@ export default function WatchLiveScreen({
     if (visible) setVisible(!visible);
   };
 
-  Object.entries(rooms).map(([key, value]:any) => {
-    if(value?.controllers) console.log("value: ", Object.values(value.controllers)[0]);
-  });
+  // Object.entries(rooms).map(([key, value]: any) => {
+  //   if (value?.controllers)
+  //     console.log("value: ", Object.values(value.controllers)[0]);
+  // });
 
   return (
     <ScrollView>
@@ -49,64 +55,68 @@ export default function WatchLiveScreen({
         <Text style={styles.header}>Class Rooms</Text>
         <View style={styles.boxes}>
           {Object.entries(rooms).map(([key, value]: any, index) => {
-            const rndnumber = Math.random() * 10;
+            const rndnumbe1r = Math.random() * 10;
             // const color = props.isOpen ? "green" : "none";
             return (
               <View key={index} style={{ ...styles.box }}>
-                <View style={styles.sideTexts}>
-                  <Image style={styles.image} source={value.image} />
+                <TouchableOpacity
+                  onPress={() => {
+                    // handleNotification(item, index);
+                    navigation.navigate("Room", { item: key, value:value});
+                  }}>
                   <View style={styles.sideTexts}>
-                    <View
-                      style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "space-between",
-                        padding: 5,
-                      }}>
-                      <View style={styles.sideTexts}>
-                        <VectorIcon
-                          type={FontAwesome5}
-                          name={"temperature-high"}
-                          size={24}
-                          color={value.temperature > 25 ? "red" : "blue"}
-                        />
-                        <Text>{value.temperature} oC</Text>
-                      </View>
+                    <Image style={styles.image} source={value.image} />
+                    <View style={styles.sideTexts}>
+                      <View
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          justifyContent: "space-between",
+                          padding: 5,
+                        }}>
+                        <View style={styles.sideTexts}>
+                          <VectorIcon
+                            type={FontAwesome5}
+                            name={"temperature-high"}
+                            size={24}
+                            color={value.temperature > 25 ? "red" : "blue"}
+                          />
+                          <Text>{value.temperature} oC</Text>
+                        </View>
                         {value.controllers ? (
                           <View style={styles.sideTexts}>
                             <VectorIcon
                               type={MaterialCommunityIcons}
                               name={"devices"}
                               size={24}
-                              color={Object.values(value.controllers)[0] ? "green" : "red"}
+                              color={
+                                Object.values(value.controllers)[0]
+                                  ? "green"
+                                  : "red"
+                              }
                             />
                             <Text>{Object.keys(value.controllers)[0]}</Text>
                           </View>
                         ) : (
                           ""
                         )}
-                      <View style={styles.sideTexts}>
-                        <VectorIcon
-                          type={FontAwesome5}
-                          name={"lightbulb"}
-                          size={24}
-                          color={value.state.lights ? "orange" : "gray"}
-                        />
-                        <Text>{value.state.lights ? "on" : "off"}</Text>
+                        <View style={styles.sideTexts}>
+                          <VectorIcon
+                            type={FontAwesome5}
+                            name={"lightbulb"}
+                            size={24}
+                            color={value.state.lights ? "orange" : "gray"}
+                          />
+                          <Text>{value.state.lights ? "on" : "off"}</Text>
+                        </View>
                       </View>
                     </View>
                   </View>
-                </View>
-                <View style={styles.title}>
-                  <TouchableOpacity
-                    onPress={() => {
-                      // handleNotification(item, index);
-                      navigation.navigate("Room");
-                    }}>
+                  <View style={styles.title}>
                     <Text style={styles.text}>{key}</Text>
-                  </TouchableOpacity>
-                  {/* <Text onPress={() => toggleModal()}>{key}</Text> */}
-                </View>
+                    {/* <Text onPress={() => toggleModal()}>{key}</Text> */}
+                  </View>
+                </TouchableOpacity>
               </View>
             );
           })}
@@ -161,7 +171,11 @@ const styles = StyleSheet.create({
   },
   title: { width: "100%", alignItems: "center", backgroundColor: "green" },
   text: { color: "white" },
-  sideTexts: { display: "flex", flexDirection: "row",justifyContent:"space-evenly" },
+  sideTexts: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+  },
   image: { width: "50%", borderTopLeftRadius: 15, height: 130 },
 });
 // 102255476975023921050
