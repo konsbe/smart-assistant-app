@@ -9,6 +9,8 @@ import {
 export type CalendarEvent = {
   title: string;
   location: string;
+  lng: number;
+  lat: number;
   description: string;
   date: string | any;
   goingBy: string;
@@ -30,6 +32,8 @@ export const INITIAL_CARD_MAPS = [
     location: "Athens Syntagma",
     description: "",
     date: new Date(),
+    lng: 0,
+    lat: 0,  
     goingByColor: "#ffc2f4",
     goingBy: "walking",
     icon: FontAwesome5,
@@ -38,6 +42,8 @@ export const INITIAL_CARD_MAPS = [
     title: "Pay my bills",
     location: "Athens Kupseli",
     description: "",
+    lng: 0,
+    lat: 0,  
     date: new Date(),
     goingByColor: "#ffc2f4",
     goingBy: "walking",
@@ -47,6 +53,8 @@ export const INITIAL_CARD_MAPS = [
     title: "Shopping Therapy",
     location: "Marousi The Mall Athens",
     description: "",
+    lng: 0,
+    lat: 0,  
     date: new Date(),
     goingByColor: "#91ffb8",
     goingBy: "car-alt",
@@ -56,6 +64,8 @@ export const INITIAL_CARD_MAPS = [
     title: "Vocation",
     location: "New York",
     description: "",
+    lng: 0,
+    lat: 0,  
     date: new Date(),
     goingByColor: "#549cbf",
     goingBy: "airplane",

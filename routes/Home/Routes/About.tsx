@@ -52,6 +52,8 @@ export default function AboutScreen({
               navigation.navigate("Map", {
                 title: item.title,
                 location: item.location,
+                itemLat: item.lat,
+                itemLng: item.lng
               });
             }}>
             <View

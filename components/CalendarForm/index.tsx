@@ -8,6 +8,7 @@ import { styling } from "./styles";
 import { DateTimePickerEvent } from "@react-native-community/datetimepicker";
 import { VectorIcon } from "../VectorIcon";
 import { FlipInEasyX } from "react-native-reanimated";
+import GooglePlacesInput from "../AutoComplete/autoComplete";
 
 type CalendarEvent = {
   title: string;
@@ -32,7 +33,10 @@ const CalendarForm = ({
 }) => {
   const [mode, setMode] = React.useState("date");
   const [show, setShow] = React.useState(false);
-
+  const [region, setRegion] = React.useState({
+    lat: 0,
+    lng: 0,
+  });
   const onChange = (
     event: DateTimePickerEvent,
     date?: Date | undefined
@@ -53,8 +57,15 @@ const CalendarForm = ({
   const showTimepicker = () => {
     showMode("time");
   };
-  const handleVectorPress = (props:any) => {
-    setCalendarEvent({ ...calendarEvent, goingBy: props.name, goingByColor:props.backGroundColor, icon:props.vectorIcon })
+  const handleVectorPress = (props: any) => {
+    setCalendarEvent({
+      ...calendarEvent,
+      goingBy: props.name,
+      lng:region.lng,
+      lat:region.lat,
+      goingByColor: props.backGroundColor,
+      icon: props.vectorIcon,
+    });
   };
 
   return (
@@ -70,7 +81,12 @@ const CalendarForm = ({
             setCalendarEvent({ ...calendarEvent, title: val })
           }
         />
-        <InputField
+        <GooglePlacesInput
+          region={region}
+          setRegion={setRegion}
+          location={""}
+        />
+        {/* <InputField
           styles={styling.inputField}
           placeholder={"location"}
           placeholderTextColor={"red"}
@@ -79,7 +95,7 @@ const CalendarForm = ({
           setValue={(val: string) =>
             setCalendarEvent({ ...calendarEvent, location: val })
           }
-        />
+        /> */}
         <InputField
           styles={styling.inputFieldMultiline}
           placeholder={"description"}
@@ -117,10 +133,7 @@ const CalendarForm = ({
                 backgroundColor: itemCard.backGroundColor,
               }}
               key={index}>
-              <TouchableOpacity
-                onPress={() =>
-                  handleVectorPress(itemCard)
-                }>
+              <TouchableOpacity onPress={() => handleVectorPress(itemCard)}>
                 <VectorIcon
                   type={itemCard.vectorIcon}
                   name={itemCard.name}

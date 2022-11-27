@@ -8,7 +8,7 @@ import {
   RootTabScreenProps,
 } from "../../types";
 import GlobalStyle from "../../utils/GlobalStyle";
-import MapView, { Callout, Marker } from "react-native-maps";
+import MapView, { Callout, Marker, Circle } from "react-native-maps";
 import GooglePlacesInput from "../../components/AutoComplete/autoComplete";
 import { useCallback } from "react";
 
@@ -17,9 +17,12 @@ export default function MapScreen({
   route,
 }: RootTabScreenProps<EnumScreenTypes.Map>) {
   const [region, setRegion] = React.useState({ lat: 0, lng: 0 });
-
-  const { location, title }: any = route.params;
-
+  const { location, title, itemLat, itemLng }: any = route.params;
+	const [ pin, setPin ] = React.useState({
+		latitude: itemLat,
+		longitude:itemLng
+	})
+  // console.log("item: ",item)
   const MapComponent = useCallback(
     ({ lat, lng }: { lat: number; lng: number }): JSX.Element => {
       return (
@@ -28,31 +31,28 @@ export default function MapScreen({
           <MapView
             style={styles.map}
             initialRegion={{
-              latitude: region.lat === 0 ? 54.5259614 : region.lat,
-              longitude: region.lng === 0 ? 15.2551187 : region.lng,
-              latitudeDelta: 0.0002,
-              longitudeDelta: 15.1821,
+              latitude: region.lat === 0 ? itemLat : region.lat,
+              longitude: region.lng === 0 ? itemLng : region.lng,
+              latitudeDelta: 0.0442,
+              longitudeDelta: 0.4821,
             }}
             provider="google"
           />
+          <Circle
+            center={{
+              latitude: itemLat,
+              longitude: itemLng,
+            }}
+            radius={1000}
+          />
           <Marker
-            coordinate={{
-              latitude: region.lat === 0 ? 54.5259614 : region.lat,
-              longitude: region.lng === 0 ? 15.2551187 : region.lng,
-            }}
-            pinColor="black"
-            draggable={true}
-            onDragStart={(e) => {
-              // console.log("Drag start", e.nativeEvent.coordinate);
-            }}
-            onDragEnd={(e) => {
-              setRegion({
-                lat: e.nativeEvent.coordinate.latitude,
-                lng: e.nativeEvent.coordinate.longitude,
-              });
-            }}>
-            <Callout>
-              <Text>Here</Text>
+            coordinate={pin}
+            pinColor={"black"} // any color
+            title={"title"}
+            description={"description"}
+            draggable={true}>
+            <Callout style={{position:"absolute"}}>
+              <Text style={{position:"absolute",backgroundColor:"red", fontSize:100, zIndex:2000}}>Here</Text>
             </Callout>
           </Marker>
         </View>

@@ -10,6 +10,8 @@ export type CalendarEvent = {
   title: string;
   location: string;
   description: string;
+  lng: number;
+  lat: number;  
   date: string | any;
   goingBy: string;
   goingByColor: string;
@@ -20,6 +22,8 @@ export const INITIAL_STATE = {
   title: "",
   location: "",
   description: "",
+  lng: 0,
+  lat: 0,  
   date: new Date(),
   goingByColor: "#ffc2f4",
   goingBy: "walking",
@@ -40,6 +44,8 @@ export const INITIAL_CARD_MAPS = [
     description: "",
     date: new Date(),
     goingByColor: "#ffc2f4",
+    lng: 0,
+    lat: 0,    
     goingBy: "walking",
     icon: FontAwesome5,
   },
@@ -48,6 +54,8 @@ export const INITIAL_CARD_MAPS = [
     location: "Athens Kupseli",
     description: "",
     date: new Date(),
+    lng: 0,
+    lat: 0,    
     goingByColor: "#ffc2f4",
     goingBy: "walking",
     icon: FontAwesome5,
@@ -57,6 +65,8 @@ export const INITIAL_CARD_MAPS = [
     location: "Marousi The Mall Athens",
     description: "",
     date: new Date(),
+    lng: 0,
+    lat: 0,    
     goingByColor: "#91ffb8",
     goingBy: "car-alt",
     icon: FontAwesome5,
@@ -66,6 +76,8 @@ export const INITIAL_CARD_MAPS = [
     location: "New York",
     description: "",
     date: new Date(),
+    lng: 0,
+    lat: 0,    
     goingByColor: "#549cbf",
     goingBy: "airplane",
     icon: Ionicons,
