@@ -39,18 +39,24 @@ export const styling = StyleSheet.create({
       backgroundColor: "red",
     },
     inputField: {
-      fontSize: 12,
+      fontSize: 15,
+      paddingLeft: 0,
       width: "95%",
       marginBottom: 20,
       borderBottomWidth: 1,
+      backgroundColor:"white"
     },
     inputFieldMultiline: {
       justifyContent: "flex-start",
       width: "95%",
-      fontSize: 12,
+      fontSize: 15,
       marginBottom: 20,
-      paddingTop: 0,
+      textAlignVertical: "top",
+      paddingTop: 10,
+      paddingLeft: 10,
       borderWidth: 1,
+      borderRadius:3,
+      backgroundColor:"#ebebeb"
     },
     goingByCards: { height:35, width:35, display:"flex", alignItems:"center", borderWidth:1, margin:4 },
     goingByContainer: { display:"flex", flexDirection:"row", alignItems:"center", justifyContent: "center"},

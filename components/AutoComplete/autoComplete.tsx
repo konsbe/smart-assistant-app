@@ -27,7 +27,7 @@ const GooglePlacesInput = (props: IProps) => {
   return (
     <GooglePlacesAutocomplete
       ref={ref}
-      placeholder={`${location}`}
+      placeholder={location ? `${location}`: "Choose a place"}
       fetchDetails={true}
       keepResultsAfterBlur={true}
       onPress={(data, details = null) => {
@@ -40,7 +40,6 @@ const GooglePlacesInput = (props: IProps) => {
             ? details?.geometry.location.lng
             : 0,
         });
-
       }}
       query={{
         // key: "AIzaSyClDGpur3KtYNHpABdDTVTiAsdHcrt5nuA",
@@ -48,8 +47,14 @@ const GooglePlacesInput = (props: IProps) => {
         language: "en",
       }}
       styles={{
-        container: { flex: 0, width: "100%" },
+        container: { flex: 0, width: "95%",  },
         listView: { backgroundColor: "white" },
+        textInput: {
+          borderBottomColor: "#888",
+          borderWidth: 1,
+          borderRadius: 3,
+          backgroundColor:"#ebebeb"
+        },
       }}
     />
   );
