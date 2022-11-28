@@ -17,8 +17,15 @@ export default function RoomScreen({
   navigation,
   route,
 }: RootTabScreenProps<EnumScreenTypes.Room>) {
-  const { item, value }: any = route.params;
+  const { item, value, setRoomsContextData, roomsContextData }: any = route.params;
   const [progress, setProgress] = useState<number>(0.3);
+  // const [progress, setProgress] = useState<number>(value.temperature/100 -20);
+  React.useEffect(() => {
+    setRoomsContextData({...roomsContextData, [`${item}`]: {...value, ["temperature"]: progress}})
+  },[progress, setProgress])
+  console.log("item: ",item)
+  console.log("roomsContext: ",roomsContextData[item])
+  console.log("value: ",value)
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 

@@ -1,10 +1,7 @@
 import React, { createContext } from "react";
-import { Dimensions, StyleSheet } from "react-native";
 import {
-  Entypo,
   FontAwesome5,
   Ionicons,
-  FontAwesome,
 } from "@expo/vector-icons";
 export type CalendarEvent = {
   title: string;

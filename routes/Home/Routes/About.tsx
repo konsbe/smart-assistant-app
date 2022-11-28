@@ -1,24 +1,20 @@
-import React, { useCallback, useContext, useState } from "react";
+import React, {useContext, useState } from "react";
 import {
   View,
   Text,
-  ScrollView,
+
   TouchableOpacity,
   FlatList,
 } from "react-native";
 import {
   EnumHomeTypes,
-  EnumScreenTypes,
   RootTabScreenProps,
 } from "../../../types";
 import { styles } from "../styles";
 import PushNotification from "react-native-push-notification";
 import GlobalStyle from "../../../utils/GlobalStyle";
-import { StackActions } from "react-navigation";
-import { INITIAL_CARD_MAPS } from "../mockNtypes";
 import { VectorIcon } from "../../../components/VectorIcon";
-import { CalendarContext, CalendarEvent } from "../../../context/TripContext";
-import { useEffect } from "react";
+import { CalendarContext } from "../../../context/TripContext";
 
 export default function AboutScreen({
   navigation,

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useContext } from "react";
 import {
   View,
   Text,
@@ -17,6 +17,8 @@ import {
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
 import { VectorIcon } from "../../../components/VectorIcon";
+import { RoomsContext } from "..";
+// import { RoomsContext } from "../../../context/SmartHomeContext";
 
 export type IArray = Array<{
   ark: number;
@@ -43,18 +45,21 @@ export default function WatchLiveScreen({
   const toggleCloseModal = () => {
     if (visible) setVisible(!visible);
   };
+  const { roomsContextData, setRoomsContextData } =
+    useContext<any>(RoomsContext);
 
   // Object.entries(rooms).map(([key, value]: any) => {
   //   if (value?.controllers)
   //     console.log("value: ", Object.values(value.controllers)[0]);
   // });
+  // console.log("roomsContextData: ", context);
 
   return (
     <ScrollView>
       <View style={styles.container}>
         <Text style={styles.header}>Class Rooms</Text>
         <View style={styles.boxes}>
-          {Object.entries(rooms).map(([key, value]: any, index) => {
+          {Object.entries(roomsContextData).map(([key, value]: any, index) => {
             const rndnumbe1r = Math.random() * 10;
             // const color = props.isOpen ? "green" : "none";
             return (
@@ -62,7 +67,12 @@ export default function WatchLiveScreen({
                 <TouchableOpacity
                   onPress={() => {
                     // handleNotification(item, index);
-                    navigation.navigate("Room", { item: key, value:value});
+                    navigation.navigate("Room", {
+                      item: key,
+                      value: value,
+                      setRoomsContextData: setRoomsContextData,
+                      roomsContextData:roomsContextData
+                    });
                   }}>
                   <View style={styles.sideTexts}>
                     <Image style={styles.image} source={value.image} />
@@ -105,9 +115,9 @@ export default function WatchLiveScreen({
                             type={FontAwesome5}
                             name={"lightbulb"}
                             size={24}
-                            color={value.state.lights ? "orange" : "gray"}
+                            color={value?.state?.lights ? "orange" : "gray"}
                           />
-                          <Text>{value.state.lights ? "on" : "off"}</Text>
+                          <Text>{value?.state?.lights ? "on" : "off"}</Text>
                         </View>
                       </View>
                     </View>
